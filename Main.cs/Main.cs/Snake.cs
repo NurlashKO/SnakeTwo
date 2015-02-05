@@ -21,7 +21,16 @@ namespace SnakeConsoleApplication
 			MainProgram.EditCell(body[0], ID == 1 ? ConsoleColor.DarkMagenta : ConsoleColor.Yellow, "%");
 		}
 
+		public void reDraw(Cell tail, Cell head, Cell newHead)
+		{
+			MainProgram.EditCell(head, ConsoleColor.Green, "+");
+			MainProgram.EditCell(tail, ConsoleColor.Black, " ");
+			MainProgram.EditCell(newHead, ID == 1 ? ConsoleColor.DarkMagenta : ConsoleColor.Yellow, "%");
+
+		}
+
 		public void eat(Cell c) {
+			MainProgram.EditCell (body[0], ConsoleColor.Green, "+");
 			body.Insert(0, c);
 			Console.Beep(50, 100);
 			MainProgram.food = new Food ();
@@ -29,9 +38,11 @@ namespace SnakeConsoleApplication
 		}
 
 		public void take(Cell c) {
+			MainProgram.EditCell (body[0], ConsoleColor.Green, "+");
 			body.Insert (0, c);
 			Console.Beep (50, 100);
 			MainProgram.bonus = new Bonus ();
+			MainProgram.bonus.Draw ();
 			score += 30;
 		}
 
@@ -66,6 +77,8 @@ namespace SnakeConsoleApplication
 				take (MainProgram.bonus.c);
 				return true;
 			}
+			//reDraw (body[body.Count() - 2], body[1], head);
+			reDraw (body[body.Count() - 1], body[0], head);
 			for (int i = body.Count () - 1; i > 0; i--) //I like to MOVE IT MOVE IT
 				body [i] = body [i - 1];
 			body [0] = head;

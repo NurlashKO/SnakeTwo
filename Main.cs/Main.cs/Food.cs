@@ -18,7 +18,7 @@ namespace SnakeConsoleApplication
 				r = new Random (DateTime.Now.Second);
 				c = new Cell (r.Next (1, MainProgram.H - 1), r.Next (1, MainProgram.W - 1));
 			} while (Snake.onSnake (c));
-
+			MainProgram.EditCell (c, ConsoleColor.Red, "0");
 		}
 
 		public void Draw() {

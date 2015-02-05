@@ -86,17 +86,18 @@ namespace SnakeConsoleApplication
 			snake2.ID = 2;
 			food = new Food ();
 			bonus = new Bonus ();
-			showTime ();
+			Draw ();
 		}
 
-		public static void drawScore(Cell c) {
+		public static void drawScore(Cell c){
 			EditCell (c, ConsoleColor.White, "PLAYER 1 : " + snake1.score.ToString());
 			c.y += 2;
 			EditCell (c, ConsoleColor.White, "PLAYER 2 : " + snake2.score.ToString());
 
 		}
 
-		public static void showTime() {
+		public static void Draw()
+		{
 			Console.Clear ();
 			Console.CursorVisible = false;
 			Console.BackgroundColor = ConsoleColor.Black;
@@ -105,7 +106,7 @@ namespace SnakeConsoleApplication
 			snake2.Draw ();
 			food.Draw ();
 			bonus.Draw ();
-			drawScore (new Cell(H + 10, W / 2));
+			drawScore (new Cell (H + 10, W / 2));
 		}
 
 		static void Main() {
@@ -113,8 +114,10 @@ namespace SnakeConsoleApplication
 
 			ConsoleKeyInfo pressed = Console.ReadKey(true);
 
+			//preDraw ();
+
 			while (true) {
-				showTime ();
+				//showTime ();
 				if (!snake1.Move (pressed.Key))
 					break;
 				if (!snake2.Move (pressed.Key))
@@ -122,6 +125,7 @@ namespace SnakeConsoleApplication
 				bonus.Move ();
 				Thread.Sleep (100);
 				if(Console.KeyAvailable)  pressed = Console.ReadKey(); 
+				drawScore (new Cell (H + 10, W / 2));
 			}
 			Thread.Sleep(1000);
 			Console.Clear ();

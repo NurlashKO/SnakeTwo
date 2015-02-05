@@ -30,6 +30,7 @@ namespace SnakeConsoleApplication
 			Random rnd = new Random (DateTime.Now.Second);
 			dx = dx.OrderBy (x => rnd.Next()).ToArray();
 			dy = dy.OrderBy (x => rnd.Next()).ToArray();
+			MainProgram.EditCell (buf, ConsoleColor.Black, " ");
 
 			for (int i = 0; i < 8; i++)
 			{
@@ -40,9 +41,10 @@ namespace SnakeConsoleApplication
 				{
 					this.c.x = buf.x;
 					this.c.y = buf.y;
-					return ;
+					break;
 				}
 			}
+			MainProgram.EditCell (this.c, ConsoleColor.Blue, "0");
 		}
 
 
